@@ -15,7 +15,7 @@ Esta documentación explica la estructura del proyecto y la lógica principal de
 9. [Audio](#audio)
 10. [Tema claro/oscuro](#tema-clarooscuro)
 11. [Datos guardados](#datos-guardados)
-
+.
 ---
 
 ## Estructura del proyecto
