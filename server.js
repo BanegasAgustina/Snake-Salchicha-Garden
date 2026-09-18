@@ -24,11 +24,11 @@ app.use('/img', express.static(path.join(__dirname, 'img')));
 app.use('/audios', express.static(path.join(__dirname, 'audios')));
 
 // Servir frontend
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 
 // SPA
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Iniciar servidor

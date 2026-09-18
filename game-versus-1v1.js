@@ -15,12 +15,12 @@ const versusSkinCache = {};
 
 // Devuelve la ruta de la imagen de cabeza mirando hacia abajo para mostrar en el selector del menú
 function getSkinHeadPreviewUrl(skinId) {
-  return `/img/${skinId}/cabeza abajo.png`;
+  return `./img/${skinId}/cabeza abajo.png`;
 }
 
 // Devuelve la ruta alternativa de la cabeza mirando a la derecha, usada si la imagen principal falla
 function getSkinHeadFallbackUrl(skinId) {
-  return `/img/${skinId}/cabeza derecha.png`;
+  return `./img/${skinId}/cabeza derecha.png`;
 }
 
 // Carga las imágenes de una skin para el modo versus. Si ya estaban en caché las devuelve directamente

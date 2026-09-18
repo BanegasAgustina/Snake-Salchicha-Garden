@@ -19,9 +19,9 @@ class AudioController {
     this.muted = localStorage.getItem("salchicha_muted") === "true";
     this.sfxVolume = this.loadVolume("salchicha_sfx_volume", 0.85);
 
-    this.eatAudio = new Audio("/audios/masticar.m4a");
+    this.eatAudio = new Audio("./audios/masticar.m4a");
     this.eatAudio.preload = "auto";
-    this.hitAudio = new Audio("/audios/golpe.mp3");
+    this.hitAudio = new Audio("./audios/golpe.mp3");
     this.hitAudio.preload = "auto";
 
     this.applyVolumes();
@@ -447,10 +447,10 @@ class AssetLoader {
   async loadCommonAssets() {
     const promises = [];
     if (!this.images["hueso"]) {
-      promises.push(this.loadImage("hueso", "/img/hueso.png"));
+      promises.push(this.loadImage("hueso", "./img/hueso.png"));
     }
     if (!this.images["ladrillo"]) {
-      promises.push(this.loadImage("ladrillo", "/img/ladrillo.png"));
+      promises.push(this.loadImage("ladrillo", "./img/ladrillo.png"));
     }
     if (promises.length) await Promise.all(promises);
   }
@@ -461,7 +461,7 @@ class AssetLoader {
     this.loadedCount = 0;
     this.totalCount = 0;
 
-    const basePath = `/img/${skinFolder}`;
+    const basePath = `./img/${skinFolder}`;
     const leftHeadSrc =
       skinFolder === "salchicha blancoy marron"
         ? `${basePath}/caabeza izquierda.png`
@@ -868,7 +868,7 @@ const SKIN_DISPLAY_NAMES = {
 };
 
 function getSkinHeadImageSrc(skinId) {
-  return `/img/${skinId}/cabeza abajo.png`;
+  return `./img/${skinId}/cabeza abajo.png`;
 }
 
 function updateActiveSkinPreview() {
@@ -895,7 +895,7 @@ function updateActiveSkinPreview() {
     img.src = getSkinHeadImageSrc(skin);
     img.onerror = function onHeadFallback() {
       this.onerror = null;
-      this.src = `/img/${skin}/cabeza.png`;
+      this.src = `./img/${skin}/cabeza.png`;
     };
   };
 
@@ -910,7 +910,7 @@ function updateActiveSkinPreview() {
     img.src = getSkinHeadImageSrc(skinId);
     img.onerror = function onVersusHeadFallback() {
       this.onerror = null;
-      this.src = `/img/${skinId}/cabeza derecha.png`;
+      this.src = `./img/${skinId}/cabeza derecha.png`;
     };
   };
 
@@ -1149,7 +1149,7 @@ function updatePreviewImages(skin) {
   const previewBody2 = document.querySelector(".preview-body-2");
   const previewTail = document.querySelector(".preview-tail");
 
-  const basePath = `/img/${skin}`;
+  const basePath = `./img/${skin}`;
   previewHead.src = `${basePath}/cabeza abajo.png`;
   previewBody1.src = `${basePath}/cuerpo.png`;
   previewBody2.src = `${basePath}/cuerpo.png`;
