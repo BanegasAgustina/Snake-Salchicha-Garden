@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Salchicha Garden 🌸 El Juego del Perro Salchicha</title>
+  <!-- Google Fonts para una tipografía premium de videojuego -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap"
+    rel="stylesheet">
+  <!-- Iconos FontAwesome para botones estéticos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-bg-layer" aria-hidden="true">
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+    <div class="bg-blob bg-blob-3"></div>
+    <div class="bg-glow bg-glow-center"></div>
+    <div class="bg-particles">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <nav class="app-top-toolbar" aria-label="Herramientas de la app">
+    <button type="button" id="settings-btn" class="toolbar-btn" title="Configuración de audio"
+      aria-label="Configuración">
+      <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+    </button>
+    <button type="button" id="theme-toggle-btn" class="toolbar-btn" title="Cambiar tema" aria-label="Cambiar tema">
+      <i class="fa-solid fa-moon" aria-hidden="true"></i>
+    </button>
+  </nav>
+
+  <div class="app-container">
+
+    <!-- PANTALLA DEL MENÚ PRINCIPAL -->
+    <section id="menu-screen" class="screen active">
+      <div class="menu-scene-decor" aria-hidden="true">
+        <span class="menu-float deco-flower" style="--x: 8%; --y: 18%; --d: 0s">🌸</span>
+        <span class="menu-float deco-flower" style="--x: 88%; --y: 22%; --d: 1.2s">🌼</span>
+        <span class="menu-float deco-bone" style="--x: 12%; --y: 72%; --d: 0.6s">🦴</span>
+        <span class="menu-float deco-bone" style="--x: 82%; --y: 68%; --d: 2s">🦴</span>
+        <span class="menu-float deco-leaf" style="--x: 72%; --y: 12%; --d: 0.3s">🌿</span>
+        <span class="menu-float deco-leaf" style="--x: 22%; --y: 88%; --d: 1.5s">🍃</span>
+        <span class="menu-float deco-paw" style="--x: 48%; --y: 6%; --d: 0.9s">🐾</span>
+      </div>
+
+      <header class="menu-header">
+        <div class="brand-logo-wrap">
+          <h1 class="glow-text title-inline brand-logo">
+            <span class="title-word">SALCHICHA</span>
+            <span class="title-word highlight">GARDEN</span>
+            <span class="title-flower" aria-hidden="true">🌸</span>
+          </h1>
+        </div>
+        <p class="menu-eyebrow"><i class="fa-solid fa-seedling"></i> Patio floral · Arcade casual</p>
+        <p class="subtitle">¡Un patio lleno de flores, huesos y diversión!</p>
+      </header>
+
+      <div class="menu-grid-layout">
+        <!-- COLUMNA IZQUIERDA: CONFIGURACIONES -->
+        <div class="menu-side-col left-col">
+          <!-- SELECCIONADOR DE ASPECTO (SKINS) - modo solitario -->
+          <div id="solo-skin-section" class="skin-section glass-panel">
+            <h3><i class="fa-solid fa-dog"></i> Elige a tu Compañero</h3>
+
+            <div class="skin-selector">
+              <button class="skin-card active" data-skin="salchicha marron">
+                <img src="/img/salchicha marron/cabeza abajo.png" alt="Marrón" class="skin-head-img">
+                Marrón
+              </button>
+              <button class="skin-card" data-skin="salchicha negro">
+                <img src="/img/salchicha negro/cabeza abajo.png" alt="Negro" class="skin-head-img">
+                Negro
+              </button>
+              <button class="skin-card" data-skin="salchicha gris">
+                <img src="/img/salchicha gris/cabeza abajo.png" alt="Gris" class="skin-head-img">
+                Gris
+              </button>
+              <button class="skin-card" data-skin="salchicha blancoy marron">
+                <img src="/img/salchicha blancoy marron/cabeza abajo.png" alt="Blanco/Marrón" class="skin-head-img">
+                Blanco/Marrón
+              </button>
+            </div>
+
+            <!-- Vista previa interactiva de la salchicha moviéndose -->
+            <div class="dog-preview-container">
+              <div class="preview-dog">
+                <img id="preview-head" src="/img/salchicha marron/cabeza abajo.png" alt="Cabeza"
+                  class="preview-part preview-head">
+                <img src="/img/salchicha marron/cuerpo.png" alt="Cuerpo" class="preview-part preview-body-1">
+                <img src="/img/salchicha marron/cuerpo.png" alt="Cuerpo" class="preview-part preview-body-2">
+                <img src="/img/salchicha marron/cola.png" alt="Cola" class="preview-part preview-tail">
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDERS 1 VS 1 (columna izquierda en PC) -->
+          <div id="versus-skins-section" class="versus-skins-container glass-panel" style="display: none;">
+            <h3><i class="fa-solid fa-dog"></i> Salchichas 1 vs 1</h3>
+            <div class="versus-sliders-row">
+              <div class="versus-slider" data-player="player1">
+                <h5><i class="fa-solid fa-user"></i> J1 · WASD</h5>
+                <div class="versus-slider-row">
+                  <button type="button" class="versus-arrow versus-prev" aria-label="Anterior">‹</button>
+                  <div class="versus-slider-viewport">
+                    <div class="versus-slider-track" id="versus-track-1"></div>
+                  </div>
+                  <button type="button" class="versus-arrow versus-next" aria-label="Siguiente">›</button>
+                </div>
+                <p class="versus-slider-name" id="versus-label-1">Marrón 🤎</p>
+              </div>
+              <div class="versus-slider" data-player="player2">
+                <h5><i class="fa-solid fa-user-tie"></i> J2 · Flechas</h5>
+                <div class="versus-slider-row">
+                  <button type="button" class="versus-arrow versus-prev" aria-label="Anterior">‹</button>
+                  <div class="versus-slider-viewport">
+                    <div class="versus-slider-track" id="versus-track-2"></div>
+                  </div>
+                  <button type="button" class="versus-arrow versus-next" aria-label="Siguiente">›</button>
+                </div>
+                <p class="versus-slider-name" id="versus-label-2">Negro 🖤</p>
+              </div>
+            </div>
+          </div>
+
+          <details id="menu-best-scores" class="menu-best-scores glass-panel">
+            <summary class="best-scores-summary">
+              <span><i class="fa-solid fa-trophy"></i> Mejores puntajes</span>
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </summary>
+            <div class="best-scores-content">
+              <p class="best-row">Solitario: <strong id="menu-highscore-solo">0</strong> huesos</p>
+              <p id="menu-highscore-versus-row" class="best-row">1 vs 1: <strong id="menu-highscore-versus">0 -
+                  0</strong></p>
+              <ol id="best-scores-list" class="best-scores-list" aria-label="Tabla de mejores puntajes"></ol>
+            </div>
+          </details>
+        </div>
+
+        <!-- COLUMNA CENTRAL: BIENVENIDA Y ACCIÓN -->
+        <div class="menu-center-col">
+          <div class="welcome-box glass-panel">
+            <h3><i class="fa-solid fa-circle-play"></i> ¡A Jugar!</h3>
+            <p class="welcome-desc">Guía al perrito por el patio de flores para comer huesos. ¡Evita las paredes y no te
+              muerdas la cola! Activa los ladrillos si quieres más reto.</p>
+
+            <!-- SELECTOR DE DIFICULTAD -->
+            <div class="difficulty-section">
+              <h4><i class="fa-solid fa-gauge-high"></i> Velocidad Inicial</h4>
+              <div class="difficulty-options">
+                <label class="diff-btn">
+                  <input type="radio" name="difficulty" value="facil">
+                  <span>Paseo (Fácil)</span>
+                </label>
+                <label class="diff-btn active">
+                  <input type="radio" name="difficulty" value="normal" checked>
+                  <span>Trote (Normal)</span>
+                </label>
+                <label class="diff-btn">
+                  <input type="radio" name="difficulty" value="dificil">
+                  <span>Carrera (Difícil)</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- SELECTOR DE TAMAÑO DE TABLERO -->
+            <div class="board-size-section">
+              <h4><i class="fa-solid fa-maximize"></i> Tamaño del Tablero</h4>
+              <div class="board-size-options">
+                <label class="size-btn">
+                  <input type="radio" name="board-size" value="12">
+                  <span>Celdas enormes (12×12)</span>
+                </label>
+                <label class="size-btn active">
+                  <input type="radio" name="board-size" value="15" checked>
+                  <span>Celdas grandes (15×15)</span>
+                </label>
+                <label class="size-btn">
+                  <input type="radio" name="board-size" value="18">
+                  <span>Celdas medias (18×18)</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- SELECTOR DE OBSTÁCULOS (solo modo solitario y bot) -->
+            <div id="obstacles-section" class="obstacles-section">
+              <h4><i class="fa-solid fa-cubes"></i> Obstáculos en el patio</h4>
+              <div class="obstacles-options">
+                <label class="obstacle-btn active">
+                  <input type="radio" name="obstacles" value="off" checked>
+                  <span>Sin obstáculos</span>
+                </label>
+                <label class="obstacle-btn">
+                  <input type="radio" name="obstacles" value="bricks">
+                  <span>Con ladrillos 🧱</span>
+                </label>
+                <label class="obstacle-btn">
+                  <input type="radio" name="obstacles" value="bombs">
+                  <span>Con bombas 💣</span>
+                </label>
+                <label class="obstacle-btn">
+                  <input type="radio" name="obstacles" value="both">
+                  <span>Ambos 🧱💣</span>
+                </label>
+              </div>
+              <p class="obstacles-hint">Los ladrillos y bombas aparecen al subir de nivel (cada 5 huesos).</p>
+            </div>
+
+            <!-- SELECTOR DE MODO DE JUEGO -->
+            <div class="game-mode-section">
+              <h4><i class="fa-solid fa-gamepad"></i> Modo de Juego</h4>
+              <div class="game-mode-options">
+                <label class="mode-btn active">
+                  <input type="radio" name="game-mode" value="solo" checked>
+                  <span>Solitario</span>
+                </label>
+                <label class="mode-btn">
+                  <input type="radio" name="game-mode" value="versus">
+                  <span>1 vs 1 👥</span>
+                </label>
+                <label class="mode-btn">
+                  <input type="radio" name="game-mode" value="player-vs-bot">
+                  <span>Jugador vs Bot 🤖</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- BOTÓN DE INICIO -->
+            <button id="start-btn" class="btn primary-btn pulse-anim">
+              <i class="fa-solid fa-play"></i> ¡Comenzar Paseo!
+            </button>
+          </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: INSTRUCCIONES -->
+        <div class="menu-side-col right-col">
+          <div class="instructions-panel glass-panel guide-panel-rich">
+            <button class="guide-accordion-header" type="button" aria-expanded="false" aria-controls="guide-content">
+              <h3><i class="fa-solid fa-book-open"></i> Guía del Jardinero</h3>
+              <i class="fa-solid fa-chevron-down accordion-icon"></i>
+            </button>
+            <div id="guide-content" class="guide-accordion-content">
+              <p class="instructions-intro">Domina el patio en minutos: crece, esquiva y compite con tu salchicha
+                favorita.</p>
+
+              <ul class="guide-list">
+                <li><span class="emoji">🦴</span><span>Come <strong>huesos</strong> para sumar puntos y crecer.</span>
+                </li>
+                <li><span class="emoji">🧱</span><span>Con <strong>ladrillos</strong>, cada hueso puede dejar un bloque
+                    fijo en el patio.</span></li>
+                <li><span class="emoji">💥</span><span>No choques con paredes, ladrillos ni tu propia cola.</span></li>
+                <li><span class="emoji">⌨️</span><span><strong>WASD</strong> o flechas; en móvil usa el
+                    <strong>joystick</strong>.</span></li>
+                <li><span class="emoji">👥</span><span><strong>1 vs 1:</strong> J1 WASD · J2 flechas del teclado.</span>
+                </li>
+              </ul>
+
+              <div class="guide-tips" aria-label="Consejos rápidos">
+                <div class="guide-tip-chip"><span>🌸</span> Cada 5 huesos subes de nivel</div>
+                <div class="guide-tip-chip"><span>⏸️</span> Espacio para pausar</div>
+                <div class="guide-tip-chip"><span>📱</span> Gira el celular en versus</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button id="scroll-top-btn" class="scroll-top-btn" type="button" aria-label="Volver arriba">
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+      </button>
+    </section>
+
+    <!-- PANTALLA DEL JUEGO ACTIVO -->
+    <section id="game-screen" class="screen">
+      <div class="game-layout-grid">
+
+        <!-- PANEL IZQUIERDO (DESKTOP): INSTRUCCIONES RÁPIDAS -->
+        <div class="game-side-panel left-panel glass-panel">
+          <h3><i class="fa-solid fa-seedling"></i> Jardín de Paseo</h3>
+          <p id="game-panel-desc" class="panel-desc">Pasea con tu perrito salchicha por el patio floral y devora todos
+            los deliciosos huesos.
+          </p>
+
+          <div class="panel-section">
+            <h4>Controles del Teclado</h4>
+            <div id="keyboard-guide-solo" class="keyboard-guide">
+              <div class="key-row"><span class="key-badge">W</span> / <span class="key-badge"><i
+                    class="fa-solid fa-arrow-up"></i></span> arriba</div>
+              <div class="key-row"><span class="key-badge">A</span> / <span class="key-badge"><i
+                    class="fa-solid fa-arrow-left"></i></span> izquierda</div>
+              <div class="key-row"><span class="key-badge">S</span> / <span class="key-badge"><i
+                    class="fa-solid fa-arrow-down"></i></span> abajo</div>
+              <div class="key-row"><span class="key-badge">D</span> / <span class="key-badge"><i
+                    class="fa-solid fa-arrow-right"></i></span> derecha</div>
+              <div class="key-row"><span class="key-badge">Espacio</span> Pausar juego</div>
+            </div>
+            <div id="keyboard-guide-versus" class="keyboard-guide" style="display: none;">
+              <p class="versus-controls-title"><strong>Jugador 1</strong> (marrón por defecto)</p>
+              <div class="key-row"><span class="key-badge">W</span> arriba · <span class="key-badge">S</span> abajo
+              </div>
+              <div class="key-row"><span class="key-badge">A</span> izquierda · <span class="key-badge">D</span> derecha
+              </div>
+              <p class="versus-controls-title"><strong>Jugador 2</strong> (negro por defecto)</p>
+              <div class="key-row"><span class="key-badge"><i class="fa-solid fa-arrow-up"></i></span> arriba · <span
+                  class="key-badge"><i class="fa-solid fa-arrow-down"></i></span> abajo</div>
+              <div class="key-row"><span class="key-badge"><i class="fa-solid fa-arrow-left"></i></span> izquierda ·
+                <span class="key-badge"><i class="fa-solid fa-arrow-right"></i></span> derecha
+              </div>
+              <div class="key-row"><span class="key-badge">Espacio</span> Pausar partida</div>
+            </div>
+          </div>
+
+          <div class="panel-section active-skin-preview">
+            <h4 id="active-skin-title">Compañero Activo:</h4>
+            <div id="solo-active-dog-badge" class="active-dog-badge">
+              <img id="active-skin-head" class="active-skin-head" src="/img/salchicha marron/cabeza abajo.png"
+                alt="Compañero activo" width="96" height="96" draggable="false" />
+              <span id="active-skin-display" class="active-skin-name">Marrón</span>
+            </div>
+            <div id="versus-active-skins" class="versus-active-skins" hidden>
+              <div class="versus-active-card">
+                <span class="versus-active-label">J1</span>
+                <img id="versus-active-head-1" class="active-skin-head" src="/img/salchicha marron/cabeza abajo.png"
+                  alt="Skin activa J1" width="82" height="82" draggable="false" />
+                <span id="versus-active-name-1" class="active-skin-name">Marrón</span>
+              </div>
+              <div class="versus-active-card">
+                <span class="versus-active-label">J2</span>
+                <img id="versus-active-head-2" class="active-skin-head" src="/img/salchicha negro/cabeza abajo.png"
+                  alt="Skin activa J2" width="82" height="82" draggable="false" />
+                <span id="versus-active-name-2" class="active-skin-name">Negro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTENIDO CENTRAL: CANVAS Y CONTROLES -->
+        <div class="game-center-panel">
+          <div class="mobile-game-top glass-panel">
+            <div class="hud mobile-hud" aria-label="Puntuación">
+              <div class="hud-item">
+                <span class="hud-label">HUESOS</span>
+                <span id="score-val" class="hud-value animate-pop">0</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">NIVEL</span>
+                <span id="level-val" class="hud-value font-level">1</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">RÉCORD</span>
+                <span id="highscore-val" class="hud-value text-gold">0</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">TIEMPO</span>
+                <span id="time-val" class="hud-value">00:00</span>
+              </div>
+            </div>
+            <div id="mobile-active-strip" class="mobile-active-strip" aria-label="Compañero activo">
+              <img id="active-skin-head-mobile" class="active-skin-head-sm" src="/img/salchicha marron/cabeza abajo.png"
+                alt="Salchicha activa" width="48" height="48" draggable="false" />
+              <div class="mobile-companion-text">
+                <span class="mobile-companion-label">Compañero</span>
+                <span id="active-skin-display-mobile" class="active-skin-name">Marrón 🤎</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="canvas-stage">
+            <div class="canvas-container">
+              <canvas id="game-canvas" width="1000" height="1000"></canvas>
+              <div class="board-particles" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+              </div>
+
+              <div id="countdown-overlay" class="countdown-overlay hidden" aria-live="assertive" aria-atomic="true">
+                <p class="countdown-label">¡Prepárate!</p>
+                <span id="countdown-number" class="countdown-number">3</span>
+              </div>
+
+              <div id="pause-overlay" class="overlay">
+                <div class="overlay-content glass-panel pause-modal-box">
+                  <h2>PAUSA EN EL PATIO 🌸</h2>
+                  <p>El perrito está descansando entre las flores...</p>
+                  <p class="pause-hint-desktop">Presiona <span class="key-badge">Espacio</span> o haz clic para
+                    continuar</p>
+                  <p class="pause-hint-mobile">Toca «Continuar» o el botón de pausa</p>
+                  <button id="resume-btn" class="btn secondary-btn">
+                    <i class="fa-solid fa-play"></i> Continuar Paseo
+                  </button>
+                </div>
+              </div>
+
+              <div id="alert-banner" class="alert-banner" role="status" aria-live="polite">
+                <span class="alert-banner-icon">🌸</span>
+                <p id="alert-text" class="alert-banner-text">¡NIVEL SUBIDO!</p>
+              </div>
+            </div>
+
+            <div class="mobile-controls-dock" aria-label="Controles táctiles">
+              <p id="canvas-touch-hint" class="canvas-touch-hint">
+                Usa el joystick para mover la salchicha
+              </p>
+              <div class="mobile-controls-bar">
+                <div class="solo-joystick">
+                  <div class="virtual-joystick solo-player" data-player="solo">
+                    <span class="joystick-label">Mover</span>
+                    <div class="joystick-base">
+                      <div class="joystick-stick"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="versus-joysticks">
+                  <div class="virtual-joystick player-one" data-player="1">
+                    <span class="joystick-label">J1</span>
+                    <div class="joystick-base">
+                      <div class="joystick-stick"></div>
+                    </div>
+                  </div>
+                  <div class="virtual-joystick player-two" data-player="2">
+                    <span class="joystick-label">J2</span>
+                    <div class="joystick-base">
+                      <div class="joystick-stick"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="dpad-container" class="dpad-dock" hidden>
+                  <div class="dpad dpad-garden">
+                    <div class="dpad-center"></div>
+                    <button type="button" id="dpad-up" class="dpad-btn up" aria-label="Arriba"><i
+                        class="fa-solid fa-caret-up"></i></button>
+                    <button type="button" id="dpad-left" class="dpad-btn left" aria-label="Izquierda"><i
+                        class="fa-solid fa-caret-left"></i></button>
+                    <button type="button" id="dpad-right" class="dpad-btn right" aria-label="Derecha"><i
+                        class="fa-solid fa-caret-right"></i></button>
+                    <button type="button" id="dpad-down" class="dpad-btn down" aria-label="Abajo"><i
+                        class="fa-solid fa-caret-down"></i></button>
+                  </div>
+                </div>
+
+                <div class="game-controls game-controls-float game-action-bar">
+                  <button id="pause-btn" class="control-btn control-btn-labeled" type="button" title="Pausar">
+                    <i class="fa-solid fa-pause" aria-hidden="true"></i>
+                    <span class="control-label">Pausa</span>
+                  </button>
+                  <button id="game-settings-btn" class="control-btn control-btn-labeled game-mobile-tool" type="button"
+                    title="Configuración de audio" aria-label="Configuración">
+                    <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                    <span class="control-label">Audio</span>
+                  </button>
+                  <button id="game-theme-btn" class="control-btn control-btn-labeled game-mobile-tool" type="button"
+                    title="Cambiar tema" aria-label="Cambiar tema">
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                    <span class="control-label">Tema</span>
+                  </button>
+                  <button id="quit-btn" class="control-btn control-btn-labeled danger" type="button" title="Menú">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i>
+                    <span class="control-label">Menú</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL DERECHO (DESKTOP): ESTADÍSTICAS DE JUEGO -->
+        <div class="game-side-panel right-panel glass-panel">
+          <h3><i class="fa-solid fa-chart-bar"></i> Estadísticas</h3>
+
+          <div class="desktop-stat-card">
+            <span class="stat-lbl">HUESOS COMIDOS</span>
+            <span id="desktop-score" class="stat-val font-score">0</span>
+          </div>
+
+          <div class="desktop-stat-card">
+            <span class="stat-lbl">NIVEL ALCANZADO</span>
+            <span id="desktop-level" class="stat-val font-level">1</span>
+          </div>
+
+          <div class="desktop-stat-card">
+            <span class="stat-lbl">RÉCORD DE JARDÍN</span>
+            <span id="desktop-highscore" class="stat-val text-gold">0</span>
+          </div>
+
+          <div class="desktop-stat-card">
+            <span class="stat-lbl">TIEMPO</span>
+            <span id="desktop-time" class="stat-val">00:00</span>
+          </div>
+
+          <div class="desktop-stat-card">
+            <span class="stat-lbl">DIFICULTAD</span>
+            <span id="desktop-diff" class="stat-val text-accent">Normal</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Game Over: modal sobre el tablero con fondo difuminado -->
+      <div id="gameover-overlay" class="gameover-overlay hidden" role="dialog" aria-modal="true"
+        aria-labelledby="gameover-title">
+        <div class="gameover-backdrop"></div>
+        <div class="gameover-card garden-panel animate-scale">
+          <header class="gameover-header">
+            <div class="dog-sad-avatar">😢</div>
+            <h2 id="gameover-title" class="danger-text">¡FIN DEL PASEO!</h2>
+            <p id="death-reason">¡Chocaste contra un bloque de ladrillos!</p>
+          </header>
+
+          <div class="gameover-stats">
+            <div class="stat-row">
+              <span>Puntos conseguidos:</span>
+              <span id="final-score" class="stat-value">0</span>
+            </div>
+            <div class="stat-row">
+              <span>Nivel máximo:</span>
+              <span id="final-level" class="stat-value">1</span>
+            </div>
+            <div class="stat-row">
+              <span>Huesos recolectados:</span>
+              <span id="final-bones" class="stat-value">0 🦴</span>
+            </div>
+            <div id="new-record-badge" class="new-record-alert hidden">
+              <i class="fa-solid fa-trophy"></i> ¡NUEVO RÉCORD DEL PATIO! <i class="fa-solid fa-trophy"></i>
+            </div>
+          </div>
+
+          <div class="gameover-actions">
+            <button id="restart-btn" class="btn primary-btn pulse-anim">
+              <i class="fa-solid fa-rotate-left"></i> Jugar de Nuevo
+            </button>
+            <button id="menu-btn" class="btn secondary-btn">
+              <i class="fa-solid fa-house"></i> Menú Principal
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Modal de configuración (volumen música / efectos) -->
+  <div id="settings-modal" class="settings-modal hidden" role="dialog" aria-modal="true"
+    aria-labelledby="settings-modal-title">
+    <div class="settings-modal-backdrop" data-close-settings></div>
+    <div class="settings-modal-box glass-panel">
+      <header class="settings-modal-header">
+        <h3 id="settings-modal-title"><i class="fa-solid fa-sliders"></i> Configuración</h3>
+        <button type="button" class="settings-close-btn" data-close-settings aria-label="Cerrar">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </header>
+      <p class="settings-modal-desc">Ajusta los efectos de sonido de la salchicha.</p>
+
+      <div class="volume-control">
+        <div class="volume-control-head">
+          <span class="volume-icon volume-icon-sfx" aria-hidden="true"><i class="fa-solid fa-volume-high"></i></span>
+          <div>
+            <span class="volume-label">Efectos de sonido</span>
+            <span id="sfx-volume-value" class="volume-value">85%</span>
+          </div>
+        </div>
+        <input type="range" id="sfx-volume-slider" class="volume-slider" min="0" max="100" value="85"
+          aria-label="Volumen de efectos" />
+        <p class="volume-hint">Comer huesos, subir de nivel y game over.</p>
+      </div>
+
+      <button type="button" id="settings-done-btn" class="btn primary-btn settings-done-btn">
+        <i class="fa-solid fa-check"></i> Listo
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal personalizado (sustituye alert / confirm) -->
+  <div id="app-modal" class="app-modal hidden" role="dialog" aria-modal="true">
+    <div class="app-modal-backdrop"></div>
+    <div class="app-modal-box glass-panel">
+      <h3 id="app-modal-title"></h3>
+      <p id="app-modal-message"></p>
+      <div class="app-modal-actions">
+        <button type="button" id="app-modal-cancel" class="btn secondary-btn hidden">Cancelar</button>
+        <button type="button" id="app-modal-confirm" class="btn primary-btn">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="context/ThemeContext.js"></script>
+  <script src="game.js"></script>
+  <script src="game-versus-1v1.js"></script>
+</body>
+
+</html>

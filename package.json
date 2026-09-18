@@ -1,0 +1,15 @@
+{
+  "name": "salchicha-snake",
+  "version": "1.0.0",
+  "description": "Juego Snake del Perro Salchicha con obstaculos y sonidos retro",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "author": "Antigravity",
+  "license": "ISC"
+}
